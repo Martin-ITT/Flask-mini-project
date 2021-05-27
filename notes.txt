@@ -1,0 +1,4 @@
+build database first
+
+install flask
+    pip3 install flask
