@@ -1,4 +1,61 @@
 build database first
 
-install flask
-    pip3 install flask
+    install flask
+pip3 install flask
+
+create .gitignore and env.py
+password generated in randomkeygen.com
+
+command to kill all instances - pkill -9 python3
+
+files Heroku requires
+
+pip3 freeze --local > requirements.txt
+
+    create Procfile. make sure it's only single line
+echo web: python3 app.py > Procfile
+
+create new app on Heroku.com
+
+connect Heroku
+1 over CLI
+2 Automatic Deployment from GitHub repo
+
+click on settings
+click reveal config vars
+enter values from env.py without ""
+
+value for mongoDB
+    click overview in mongoDB from cluster
+    click connect button
+    click connect your app
+    choose python and version
+    update dbname and password if needed in link
+ 
+add and commit required files - one by one and push
+
+click enable Automatic Deployment in Heroku
+click deploy branch
+
+wire up DB. need to install flask-pymongo
+pip3 install flask-pymongo
+
+We also need to install a package called
+'dnsython' in order to use the Mongo SRV connection string.
+pip3 install dnspython
+
+update requirements.txt when new package added
+
+The first configuration will be used to grab the database name: app.config["MONGO_DBNAME"]
+= os.environ.get("MONGO_DBNAME").
+Next, we need to configure the actual connection string, also called the MONGO_URI, which is
+done in the same exact way: app.config["MONGO_URI"] = os.environ.get("MONGO_URI").
+The final app setting is to grab our SECRET_KEY, which is a requirement when using some of
+the functions from Flask: app.secret_key = os.environ.get("SECRET_KEY").
+
+We need to setup an instance of PyMongo, and add the app into that using something called
+a constructor method, so type: "mongo = PyMongo(app)".
+This is the Flask 'app' object we've defined above, and is the final step to ensure our
+
+create teplates directory where flask looking for html files
+create tasks.html teplate

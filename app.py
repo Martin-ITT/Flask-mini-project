@@ -1,17 +1,46 @@
 import os
-from flask import Flask
+from flask import (
+    Flask, flash, render_template, 
+    redirect, request, url_for)
+from flask_pymongo import PyMongo
+
+# mongo stores data in json like format bson
+from bson.objectid import ObjectId
+
 # once deployed on heroku app.py won't be able to find env.py
 if os.path.exists("env.py"):
     import env
 
 
-#create an instance of Flask and store in variable app
+# create an instance of Flask and store in variable app
 app = Flask(__name__)
 
+# grab DB name
+app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
+# config connection string
+app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
+# grab secret key
+app.secret_key = os.environ.get("SECRET_KEY")
+
+# setup an instance of pymongo
+mongo = PyMongo(app)
+
+# Remember the routing is a string that, when we attach it to a URL, will redirect to a
+# particular function in our Flask app.
+# I'm going to add it directly beneath our existing default root here, so that either
+# URL will direct the user to the same page.
 @app.route("/")
-#test function hello
-def hello():
-    return "Hello world ... again!"
+@app.route("/get_tasks")
+# test function hello
+def get_tasks():
+    # On this tasks template, we want to be able to generate data from our tasks collection
+    # on MongoDB, visible to our users. This will find all documents from the tasks collection,
+    # and assign them to our new 'tasks' variable.
+    tasks = mongo.db.tasks.find()
+    # Along with the rendering of the template, we'll pass that tasks variable through to
+    # the template: tasks=tasks. The first 'tasks' is what the template will use, and that's
+    # equal to the second 'tasks',
+    return render_template("tasks.html", tasks=tasks)
 
 
 """

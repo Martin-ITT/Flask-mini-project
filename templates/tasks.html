@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Tasks Manager</title>
+
+        <!-- Bootstrap CSS -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.3/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <h1 class="text-center">Hello World</h1>
+        <!-- We'll use the Jinja templating language to loop through each task item from within our
+        collection. The iteration on this for-loop uses this new variable we created called 'task', and then
+        we'll use dot-notation to target each field. The first key we'll print is the task_name, and I'm just
+        going to add a simple line-break to clearly differentiate each value. -->
+        {% for task in tasks %}
+            {{ task.task_name }} <br>
+            {{ task.category_name }} <br>
+            {{ task.description }} <br>
+            {{ task.is_urgent }} <br>
+            {{ task.due_date }} <br>
+        {% endfor %}
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <!-- Bootstrap JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </body>
+</html>
