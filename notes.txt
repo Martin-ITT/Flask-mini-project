@@ -59,3 +59,8 @@ This is the Flask 'app' object we've defined above, and is the final step to ens
 
 create teplates directory where flask looking for html files
 create tasks.html teplate
+
+now the app should be conected to db
+
+create more teplate html
+base.html
