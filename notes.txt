@@ -64,3 +64,28 @@ now the app should be conected to db
 
 create more teplate html
 base.html
+extend base with task.html
+
+add materializeCSS.com
+vs 1.0.0
+use CDN, add both links to base template
+
+from code.jquery.com add minified jquery - before materialize
+
+from cdnjs.com add font-awesome
+click show hidden, click css select all.min.css
+
+create folder static for content that doesnt change often - css, javascript
+our own styles and scripts must be always the last one to be loaded
+
+use Jinja to point to files in static folder
+{{ url_for('static', filename='css/style.css')}}
+
+Sometimes though, we might want to add our own custom styles or scripts that are applied
+from one of our child templates.
+To achieve this, we'll apply the same block concept as our main content.
+For any custom CSS we add, we'll inject that into a {% block styles %}, making sure to
+include the {% endblock %} as well.
+Then for any custom JavaScript we add, we'll inject that into a {% block scripts %}, and
+once again, making sure to add the closing {% endblock %}.
+
