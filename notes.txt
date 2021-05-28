@@ -113,3 +113,36 @@ add class .right to mobile demo button to appear on right
 
 start adding links
 
+-git commit
+
+start building user authentication
+From the main utilities page for Werkzeug, you can see various helpers that we can use
+to make our user authentication more secure.
+from werkzeug.security import generate_password_hash, check_password_hash
+@app.route("/register")
+
+check materialize for cards
+change repsonsible settings
+<div class="col s12 m8 offset-m2">
+change inner div to from
+delete color teal
+get input fields from materialize forms
+
+change span to 12 spaces
+<div class="input-field col s12">
+Again, since I'm using Font-Awesome instead of the Material Icons, I'll remove that class,
+and replace it with "fas" for a solid icon, and "fa-user-plus".
+<i class="fas fa-user-plus prefix light-blue-text text-darken-4">account_circle</i>
+
+change prefix keeping same id 
+<input id="username" type="text" class="validate">
+<label for="username">First Name</label>
+
+grab the input for password from materialize and style it
+
+add submit button
+button:submit.col.s12.btn-large.light-blue.darken-4.text-shadow
+
+finish post and action functions in form
+
+

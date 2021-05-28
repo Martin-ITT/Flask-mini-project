@@ -7,6 +7,8 @@ from flask_pymongo import PyMongo
 # mongo stores data in json like format bson
 from bson.objectid import ObjectId
 
+from werkzeug.security import generate_password_hash, check_password_hash
+
 # once deployed on heroku app.py won't be able to find env.py
 if os.path.exists("env.py"):
     import env
@@ -42,6 +44,9 @@ def get_tasks():
     # equal to the second 'tasks',
     return render_template("tasks.html", tasks=tasks)
 
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    return render_template("register.html")
 
 """
 The final step to test our application, is to tell our app how and where to run our application.
