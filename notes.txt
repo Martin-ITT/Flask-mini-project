@@ -89,3 +89,27 @@ include the {% endblock %} as well.
 Then for any custom JavaScript we add, we'll inject that into a {% block scripts %}, and
 once again, making sure to add the closing {% endblock %}.
 
+add navbar from materialize
+make comments
+add some classes - .nav-extended comes from materialize
+.text-shadow our custom class styled in css
+change color from materialize colors using class
+
+Since I'm using Font-Awesome instead of the Material Icons, let's replace
+the 'menu' with 'fas' for a solid icon, plus 'fa-bars'.
+
+change the menu options
+
+style the mobile menu navbar
+check for components - mobile collapse
+
+activate the mobile navbar with jquery
+check materialize for mobile/JavaScript options - duration, left, right side
+$(document).ready(function(){
+    $('.sidenav').sidenav({edge: "right"});
+  });
+
+add class .right to mobile demo button to appear on right
+
+start adding links
+
