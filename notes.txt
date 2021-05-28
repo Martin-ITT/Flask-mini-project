@@ -151,3 +151,18 @@ As a challenge, you can customize the hash and salt methods to your own preferen
 
 create  blocks for flash messages
 
+defensive programing - input attributes
+HTML inputs have a property called "pattern", which allows us to use something called Regular
+Expressions, sometimes referred to as "RegEx".
+RegEx can be quite complex, and slightly vary from language to language, but it doesn't
+need to be difficult.
+The caret (^) tells our pattern that it's the start of a string.
+The dollar ($) tells our pattern that it's the end of a string.
+Within square-brackets, we need to specify what users can use on this input field.
+We'll keep it simple, and allow users to include any letter from a-z in lowercase, any letter
+from A-Z in uppercase, and any number 0-9.
+Within curly-brackets, we can then specify the number of characters permitted, but we
+need to use a comma to separate the values {5,15}
+
+create login.html as copy of register.html
+
