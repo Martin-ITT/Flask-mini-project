@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% block content %}
-    <h2>I am extending base</h2>
     <!-- We'll use the Jinja templating language to loop through each task item from within our
     collection. The iteration on this for-loop uses this new variable we created called 'task', and then
     we'll use dot-notation to target each field. The first key we'll print is the task_name, and I'm just
@@ -12,5 +11,20 @@
         {{ task.is_urgent }} <br>
         {{ task.due_date }} <br>
     {% endfor %}
+    
+    <ul class="collapsible">
+        <li>
+            <div class="collapsible-header white-text light-blue darken-4 text-shadow"><i class="fas fa-caret-down"></i>First</div>
+            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+        </li>
+        <li>
+            <div class="collapsible-header white-text light-blue darken-4 text-shadow"><i class="fas fa-caret-down"></i>Second</div>
+            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+        </li>
+        <li>
+            <div class="collapsible-header white-text light-blue darken-4 text-shadow"><i class="fas fa-caret-down"></i>Third</div>
+            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+        </li>
+      </ul>
 
 {% endblock %}
