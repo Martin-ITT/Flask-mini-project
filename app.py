@@ -46,6 +46,41 @@ def get_tasks():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    if request.method == "POST":
+        # check if username already exists in db
+        existing_user = mongo.db.users.find_one(
+            {"username": request.form.get("username").lower()})
+        
+        # If there is a match in the database, and our new 'existing_user' variable is truthy, we
+        # want to display a message to the user on screen, using a flash() message.
+        if existing_user:
+            flash("Username already exists")
+            return redirect(url_for("register"))
+        
+        # Our variable 'register' will be a dictionary, which will be inserted into the database shortly.
+        # The first item in our dictionary will be "username", and that will be set to grab the username
+        # value from our form, using the name="" attribute.
+        # Remember, we want to store this into the database as lowercase letters.
+        # Use a comma to separate each dictionary item.
+        register = {
+            "username": request.form.get("username").lower(),
+            "password": generate_password_hash(request.form.get("password"))
+        }
+        # If you were to include a secondary password field to confirm the user's password, you
+        # would want to do that prior to building this dictionary here.
+        
+        # Now we can call the Users collection on MongoDB, and use the 'insert_one()' method.
+        # Insert_one() requires a dictionary to be inserted, and since we've stored our dictionary inside
+        # of a variable called 'register', we can just use that.
+        mongo.db.users.insert_one(register)
+                
+        # We then want to put the newly created user into 'session', like a temporary page cookie,
+        # using the session function we've imported at the top of this file.
+        # The session key in square-brackets can be whatever we'd like to call it, but we'll call
+        # ours "user" for now.
+        session["user"] = request.form.get("username").lower()
+        flash("Registration Successful!")
+        
     return render_template("register.html")
 
 """

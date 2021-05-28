@@ -144,5 +144,10 @@ add submit button
 button:submit.col.s12.btn-large.light-blue.darken-4.text-shadow
 
 finish post and action functions in form
+--git commit
 
+complete "POST" method
+As a challenge, you can customize the hash and salt methods to your own preference, but
+
+create  blocks for flash messages
 
