@@ -13,7 +13,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
 
-
 # create an instance of Flask and store in variable app
 app = Flask(__name__)
 
@@ -43,6 +42,7 @@ def get_tasks():
     # the template: tasks=tasks. The first 'tasks' is what the template will use, and that's
     # equal to the second 'tasks',
     return render_template("tasks.html", tasks=tasks)
+
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -80,7 +80,10 @@ def register():
         # ours "user" for now.
         session["user"] = request.form.get("username").lower()
         flash("Registration Successful!")
+        return redirect(url_for("profile", username=session["user"]))
+    
     return render_template("register.html")
+
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -98,6 +101,7 @@ def login():
                     # database.
                     session["user"] = request.form.get("username").lower()
                     flash("Welcome, {}".format(request.form.get("username")))
+                    return redirect(url_for("profile", username=session["user"]))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
@@ -110,13 +114,34 @@ def login():
                                            
     return render_template("login.html")
 
+
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
-    #grab the session user's username from db
+    # grab the session user's username from db
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
+    # One way to fix this, so that users can't just force the URL to someone else's profile, is
+    # to update our Profile function. If our session['user'] cookie is truthy, then we want
+    # to return the appropriate profile template. However, if it's not true or doesn't exist,
+    # we'll return the user back to the login template instead.
+    if session["user"]:
+        return render_template("profile.html", username=username)
     
-    return render_template("profile.html", username=username)
+    return redirect(url_for("login"))
+
+
+@app.route("/logout")
+def logout():
+    #remove user session cookies
+    # There are a couple ways to remove session cookies. First, we could just use
+    # 'session.clear()', which would remove all session cookies applicable for our
+    # app. Alternatively, we could use 'session.pop()', similar to JavaScript, but
+    # the '.pop()' method must specify which session cookie we want to delete,
+    # which is 'user' in our case. After removing the session cookie for 'user',
+    # we can then redirect our user back to the login function.
+    flash("You have been logged out")
+    session.pop("user")
+    return redirect(url_for("login"))
 
 """
 The final step to test our application, is to tell our app how and where to run our application.
