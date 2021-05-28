@@ -1,9 +1,31 @@
 {% extends "base.html" %}
 {% block content %}
-    <!-- We'll use the Jinja templating language to loop through each task item from within our
+   
+    <ul class="collapsible">
+        {% for task in tasks %}
+        <li>
+            <div class="collapsible-header white-text light-blue darken-4 text-shadow">
+                <i class="fas fa-caret-down"></i><strong>{{ task.task_name }}</strong> : {{ task.due_date }}
+                {% if task.is_urgent == "on" %}
+                <i class="fas fa-exclamation-circle yellow-text text-lighten-2 tooltipped"
+                data-position="right" data-tooltip="URGENT"></i>
+                {% endif %}
+            </div>
+            <div class="collapsible-body">
+                <strong>{{ task.category_name }}</strong>
+                <p>{{ task.task_description }}</p>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+        
+
+{% endblock %}
+
+ <!-- We'll use the Jinja templating language to loop through each task item from within our
     collection. The iteration on this for-loop uses this new variable we created called 'task', and then
     we'll use dot-notation to target each field. The first key we'll print is the task_name, and I'm just
-    going to add a simple line-break to clearly differentiate each value. -->
+    going to add a simple line-break to clearly differentiate each value. 
     {% for task in tasks %}
         {{ task.task_name }} <br>
         {{ task.category_name }} <br>
@@ -11,20 +33,4 @@
         {{ task.is_urgent }} <br>
         {{ task.due_date }} <br>
     {% endfor %}
-    
-    <ul class="collapsible">
-        <li>
-            <div class="collapsible-header white-text light-blue darken-4 text-shadow"><i class="fas fa-caret-down"></i>First</div>
-            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-        </li>
-        <li>
-            <div class="collapsible-header white-text light-blue darken-4 text-shadow"><i class="fas fa-caret-down"></i>Second</div>
-            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-        </li>
-        <li>
-            <div class="collapsible-header white-text light-blue darken-4 text-shadow"><i class="fas fa-caret-down"></i>Third</div>
-            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-        </li>
-      </ul>
-
-{% endblock %}
+ -->

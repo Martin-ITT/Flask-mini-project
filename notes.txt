@@ -166,3 +166,30 @@ need to use a comma to separate the values {5,15}
 
 create login.html as copy of register.html
 
+create profile.html page
+create profile function
+
+create log out
+fix ['user'] cookies
+
+fix menu visibility - only allow basic links when not loged in and vice versa
+
+select tasks.html
+get javascript-collapsible from materialize
+
+add data to tasks
+insert for tasks loop into collapsible
+/// comment block ctrl + /
+
+to get around jinja for loops
+    tasks = mongo.db.tasks.find()
+    return render_template("tasks.html", tasks=tasks)
+                                         -----
+                                        tasks = mongo.db.tasks.find()
+    However, this is not a proper list per se, it's technically a Mongo Cursor Object
+    We can simply wrap our entire 'find' method inside of a Python list(), to convert the
+    Cursor Object into a proper list.
+
+    tasks = list(mongo.db.tasks.find())
+
+style collapsible and add tooltip from materialize

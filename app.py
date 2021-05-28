@@ -37,7 +37,7 @@ def get_tasks():
     # On this tasks template, we want to be able to generate data from our tasks collection
     # on MongoDB, visible to our users. This will find all documents from the tasks collection,
     # and assign them to our new 'tasks' variable.
-    tasks = mongo.db.tasks.find()
+    tasks = list(mongo.db.tasks.find())
     # Along with the rendering of the template, we'll pass that tasks variable through to
     # the template: tasks=tasks. The first 'tasks' is what the template will use, and that's
     # equal to the second 'tasks',
