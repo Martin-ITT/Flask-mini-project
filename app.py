@@ -143,6 +143,11 @@ def logout():
     session.pop("user")
     return redirect(url_for("login"))
 
+
+@app.route("/add_task")
+def add_task():
+    return render_template("add_task.html")
+
 """
 The final step to test our application, is to tell our app how and where to run our application.
 This is the same process we've seen before, but this time we've set our IP and PORT environment

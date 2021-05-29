@@ -193,3 +193,8 @@ to get around jinja for loops
     tasks = list(mongo.db.tasks.find())
 
 style collapsible and add tooltip from materialize
+
+add manually more categories to mongo
+
+create new tasks - add_task.html
+add decorator and function
