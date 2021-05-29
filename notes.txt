@@ -205,3 +205,9 @@ style form and page
 
 add select element for db categories
 
+Oops, we get an error, 'Method Not Allowed'.
+The reason this is happening, is because we've set the form as a "POST" method, calling the
+'add_task' function in Python.
+If you recall though, we've only built the default "GET" method in our function so far,
+and the form has nowhere to POST the data yet.
+create GET POST methods in add_task()

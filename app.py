@@ -144,8 +144,33 @@ def logout():
     return redirect(url_for("login"))
 
 
-@app.route("/add_task")
+@app.route("/add_task", methods=["GET", "POST"])
 def add_task():
+    if request.method == "POST":
+        # simple way
+        # mongo.dg.tasks.insert_one(request.form.to_dict())
+        
+        # However, we also want to include some additional fields, which aren't
+        # isted on our form, such as the username of the person adding the task.
+        is_urgent = "on" if request.form.get("is_urgent") else "off"
+        task = {
+            "category_name": request.form.get("category_name"),
+            "task_name": request.form.get("task_name"),
+            # If you have something on your form like a multi-select dropdown
+            # list, that can be an array of items, then you would use:
+            # 'request.form.getlist()' instead. This would be helpful if you're
+            # grabbing multiple elements with the same name="" attribute, such
+            # as various ingredients from a recipe for example.
+            # "task_description": request.form.getlist("task_description"),
+            "task_description": request.form.get("task_description"),
+            "is_urgent": is_urgent,
+            "due_date": request.form.get("due_date"),
+            "created_by": session["user"]
+        }
+        mongo.db.tasks.insert_one(task)
+        flash("Task Successfully Added")
+        return redirect(url_for("get_tasks"))
+        
     categories = mongo.db.categories.find().sort("category_name", 1)
     return render_template("add_task.html", categories=categories)
 
