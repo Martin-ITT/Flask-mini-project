@@ -211,3 +211,15 @@ The reason this is happening, is because we've set the form as a "POST" method, 
 If you recall though, we've only built the default "GET" method in our function so far,
 and the form has nowhere to POST the data yet.
 create GET POST methods in add_task()
+
+
+add validation to task category in add task
+
+Let me try to explain what's happening here behind the scene.
+Materialize will generate an unordered-list <ul> using a unique ID that's targeted to
+our original <select> element.
+
+add more buttons to delete or mark task done
+
+create edit_task.html and create funcionality
+
