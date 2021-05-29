@@ -198,3 +198,7 @@ add manually more categories to mongo
 
 create new tasks - add_task.html
 add decorator and function
+
+add form - materialize to create new task
+
+style form and page
