@@ -223,3 +223,7 @@ add more buttons to delete or mark task done
 
 create edit_task.html and create funcionality
 
+wire up edit task form
+add cancel button
+
+hide edit buttons if not logged in
