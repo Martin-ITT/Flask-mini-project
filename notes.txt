@@ -202,3 +202,6 @@ add decorator and function
 add form - materialize to create new task
 
 style form and page
+
+add select element for db categories
+
