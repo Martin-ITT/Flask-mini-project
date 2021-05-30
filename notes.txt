@@ -230,3 +230,5 @@ hide edit buttons if not logged in
 
 add delete button, try to create done button
 
+manage categories
+
