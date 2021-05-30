@@ -227,3 +227,6 @@ wire up edit task form
 add cancel button
 
 hide edit buttons if not logged in
+
+add delete button, try to create done button
+
