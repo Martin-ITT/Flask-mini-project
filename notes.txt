@@ -232,3 +232,4 @@ add delete button, try to create done button
 
 manage categories
 
+create add category page and function
