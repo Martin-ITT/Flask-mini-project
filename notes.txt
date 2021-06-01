@@ -233,3 +233,19 @@ add delete button, try to create done button
 manage categories
 
 create add category page and function
+
+
+https://docs.mongodb.com/manual/indexes/#index-types
+indexes
+$python3
+>from app import mongo
+>mongo.db.tasks.create_index([("task_name", "text"), ("task_description", "text")])
+
+check details
+mongo.db.tasks.index_information()
+
+delete index
+mongo.db.tasks.drop_index('task_name_text_task_description_text')
+
+delete all indexes
+mongo.db.tasks.drop_indexes()
